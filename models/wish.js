@@ -30,4 +30,36 @@ module.exports = class Wish {
         })
     }
 
+    static fetchWishes(callback){
+        fs.readFile(FilePath, (error, fileContent) => {
+            if (error) {
+                callback([])
+            }
+            callback(JSON.parse(fileContent))
+        })
+    }
+
+    static deleteWish(WishToDelete){
+        fs.readFile(FilePath, (error, fileContent) => {
+            let wishes = [];
+            if (!error) {
+                wishes = JSON.parse(fileContent)
+            }
+
+            for(let i = 0; i < wishes.length; i++) {
+                if (wishes[i].description === WishToDelete) {
+                    wishes.splice(i, 1)
+                    break;
+                }
+            };
+
+            fs.writeFile(FilePath, JSON.stringify(wishes), (error)=> {
+                if (!error) {
+                    console.log('Item deleted');
+                }
+            })
+
+        })
+    }
+
 }
