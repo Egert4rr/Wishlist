@@ -5,8 +5,9 @@ const path = require('path')
 const FilePath = path.join(path.dirname(require.main.filename), 'data', 'wishes.json')
 
 module.exports = class Wish {
-    constructor(wish){
+    constructor(wish, imgUrl){
         this.description = wish
+        this.imgUrl = imgUrl
     }
 
     saveWish(){

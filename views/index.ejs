@@ -4,29 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My wishlist</title>
+    <link rel="stylesheet" href="css/HomePageStyle.css">
+    <script src="https://kit.fontawesome.com/b22d0c6f3a.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container">
-        <h1>
+        <h1 class="Date">
             <%= dateToRender %>
         </h1>
-        <form action="/" method="POST">
-            <input type="text" name="userWish" placeholder="add a wish">
-            <button type="submit">Add a wish</button>            
-        </form>
-
-        <div class="wish-container">
-            <ul>
-            <% for(let i = 0; i < myWishes.length; i ++) {%>
-                <li><%= myWishes[i].description %>
-                <form action="/deleteWish" method="POST" style="display: inline-block;">
-                    <input type="hidden" name="wishToDelete" value="<%= myWishes[i].description %>">
-                    <button type="submit">X</button>
-                </form>
-                </li>
-            <% } %>
-            </ul>
+        <hr>
+        <div class="Wish-container">
+            <form action="/" method="POST" enctype="multipart/form-data">
+                <input type="text" name="userWish" placeholder="add a wish">
+                <input type="file" name="userFile">
+                <button type="submit">Add a wish</button>            
+            </form>
+    
+            <div class="wishImgDesc-container">
+                <ul>
+                <% for(let i = 0; i < myWishes.length; i ++) {%>
+                    <li>
+                    <div>
+                        <%= myWishes[i].description %>
+                    </div>
+                    
+                    <img class="HomePageimg" src="<%= myWishes[i].imgUrl %>">
+                    <form action="/deleteWish" method="POST" style="display: inline-block;">
+                        <input type="hidden" name="wishToDelete" value="<%= myWishes[i].description %>">
+                        <button type="submit"><i class="fas fa-trash"></i></button>
+                    </form>
+                    </li>
+                <% } %>
+                </ul>
+            </div>
         </div>
     </div>
+    <div class="bottom-container">
+        <ul>
+
+            <li class="bottom-link">
+                <div class="li-wrapper">
+                    <i class="fab fa-instagram fa-2x "></i><a href="#">Instagram</a>
+                </div> 
+            </li>
+
+            <li class="bottom-link">
+                <div class="li-wrapper">
+                    <i class="fab fa-twitter fa-2x"></i><a href="#">Twitter</a> 
+                </div>
+            </li>
+
+            <li class="bottom-link">
+                <div class="li-wrapper">
+                    <i class="fab fa-facebook-square fa-2x"></i><a href="#">Facebook</a>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+    <footer>Egert Arr 2021 &#169;</footer>
+    
 </body>
 </html>
